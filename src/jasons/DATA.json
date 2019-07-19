@@ -1,0 +1,203 @@
+{
+  "1": {
+    "subTopic": {
+      "name": "Review of Big O",
+      "paragraphs": [
+        {
+          "headline": "Review of Big O",
+          "text": "\"Big O\" is the \"asymptotic runtime\"\nExpressed as function of the size of the inputs\nConsider best, worst, and average cases",
+          "image": "WcBRI.png"
+        },
+        {
+          "headline": "Review of Big O",
+          "text": "/**\n * Return the index of the minimum element in an integer array.\n */\npublic static int findMin(int[] array) {\n    int minIndex = 0; // O(1)\n    for (int i = 0; i < array.length; i++) { // n times\n        if (array[i] < array[minIndex]) { // O(1)\n            minIndex = i; // O(1)\n        }\n    }\n} // O(1) + n (O(1) + O(1)) = O(1) + n O(1) = O(1) + O(n) = O(n)",
+          "image": null
+        }
+      ]
+    }
+  },
+  "2": {
+    "subTopic": {
+      "name": "Arrays\n",
+      "paragraphs": [
+        {
+          "headline": "Arrays\n",
+          "text": "An array is a collection of items stored at contiguous memory locations. The idea is to store multiple items of the same type together. This makes it easier to calculate the position of each element by simply adding an offset to a base value, i.e., the memory location of the first element of the array (generally denoted by the name of the array).",
+          "image": null
+        },
+        {
+          "headline": "Arrays\n\n",
+          "text": "The above image can be looked as a top-level view of a staircase where you are at the base of the staircase. Each element can be uniquely identified by their index in the array (in a similar way as you could identify your friends by the step on which they were on in the above example).",
+          "image": "array-2.png"
+        },
+        {
+          "headline": "Types of indexing in array:",
+          "text": "\n0 (zero-based indexing): The first element of the array is indexed by subscript of 01 (one-based indexing): The first element of the array is indexed by subscript of 1n (n-based indexing): The base index of an array can be freely chosen. Usually programming languages allowing n-based indexing also allow negative index values and other scalar data types like enumerations, or characters may be used as an array index.",
+          "image": null
+        },
+        {
+          "headline": "boolean",
+          "text": "Every comparison operator in java will return the type boolean that not like other languages can only accept two special values: true or false.\nboolean b = false;\nb = true;\n\nboolean toBe = false;\nb = toBe || !toBe;\nif (b) {\n    System.out.println(toBe);\n}\n\nint children = 0;\nb = children; // Will not work\nif (children) { // Will not work\n    // Will not work\n}",
+          "image": null
+        }
+      ]
+    }
+  },
+  "3": {
+    "subTopic": {
+      "name": "Linked lists\n",
+      "paragraphs": [
+        {
+          "headline": "Linked lists\n",
+          "text": "A linked list is a linear data structure, in which the elements are not stored at contiguous memory locations. The elements in a linked list are linked using pointers as shown in the below image:",
+          "image": "Linkedlist.png"
+        },
+        {
+          "headline": "Linked lists\n",
+          "text": "  // Attributes\n  public class Node {\n      public int value;\n      public Node next;\n\n      public Node(int value, Node next) {\n          this.value = value;\n          this.next = next;\n      }\n  }\n\n  // Methods\n  public interface MyList {\n      public int get(int index);\n\n      public void update(int index, int value);\n\n      public void append(int value);\n\n      public String toString();\n  }",
+          "image": "arraylist-vs-linkedlist-complexity.png"
+        }
+      ]
+    }
+  },
+  "4": {
+    "subTopic": {
+      "name": "Stacks",
+      "paragraphs": [
+        {
+          "headline": "Arrays",
+          "text": "Stack is a linear data structure which follows a particular order in which the operations are performed. The order may be LIFO(Last In First Out) or FILO(First In Last Out)\nThere are many real-life examples of a stack. Consider an example of plates stacked over one another in the canteen. The plate which is at the top is the first one to be removed, i.e. the plate which has been placed at the bottommost position remains in the stack for the longest period of time. So, it can be simply seen to follow LIFO(Last In First Out)/FILO(First In Last Out) order.\n",
+          "image": "stack.png"
+        },
+        {
+          "headline": "Stacks",
+          "text": "// Last-in first-out data structure\npublic interface MyStack {\n    // Add a value to the stack\n    public void push(int value);\n\n    // Remove a value from the stack\n    public int pop();\n\n    // See the value on the \"top\" of the stack (next to be removed)\n    public int peek();\n}\n\nMyStack a = ...; // [ ]\na.push(1); // [ 1 ]\na.push(2); // [ 2 1 ]\na.peek(); // returns 2\na.push(3); // [ 3 2 1 ]\na.pop(); // [ 2 1 ], returns 3\na.push(4); // [ 4 2 1 ]\na.peek(); // returns 4",
+          "image": null
+        }
+      ]
+    }
+  },
+  "5": {
+    "subTopic": {
+      "name": "Queues",
+      "paragraphs": [
+        {
+          "headline": "Queues",
+          "text": "A Queue is a linear structure which follows a particular order in which the operations are performed. The order is First In First Out (FIFO). A good example of a queue is any queue of consumers for a resource where the consumer that came first is served first. The difference between stacks and queues is in removing. In a stack we remove the item the most recently added; in a queue, we remove the item the least recently added",
+          "image": "Queue.png"
+        },
+        {
+          "headline": "Queues",
+          "text": "// First-in first-out data structure\npublic interface MyQueue {\n    // Add a value to the back of the queue\n    public void enqueue(int value);\n\n    // Remove a value from front of the queue\n    public int dequeue();\n\n    // See the value on the \"front\" of the queue (next to be removed)\n    public int peek();\n}\n\nMyStack a = ...; // [ ]\na.enqueue(1); // [ 1 ]\na.enqueue(2); // [ 1 2 ]\na.peek(); // returns 1\na.enqueue(3); // [ 1 2 3 ]\na.dequeue(); // [ 2 3 ], returns 1\na.enqueue(4); // [ 2 3 4 ]\na.peek(); // returns 2",
+          "image": null
+        }
+      ]
+    }
+  },
+  "6": {
+    "subTopic": {
+      "name": "Hash Maps\n",
+      "paragraphs": [
+        {
+          "headline": "Hash Maps\n",
+          "text": "An absolutely essential concept.\nSupported operations:\ninsert()delete()find()\nWhy is it so impressive? All of these operations can be done in constant O(1) time.",
+          "image": null
+        },
+        {
+          "headline": "Hash Maps\n",
+          "text": "Think of a hash map like a really really big array.\n \nAn array that, instead of integer indexes, has indexes that can be anything.\nmap[\"0\"] -> 1\nmap[\"Adam Cannon\"] -> 1004\nmap[\"BullsAndCows\"] -> 9001\nmap[\"thisisareallylongstringthatistoocoolomgomgomgomgomgomgadiadiadilove\"] -> 0",
+          "image": null
+        },
+        {
+          "headline": "Hash Maps\n",
+          "text": "No. :( An infinite size array for infinite possible indexes is unreasonable.\nAs it turns out, however, there's a way to simplify anything (String, object, integer) into an integer\nThis is called the Hash function: maps an object (of some type) to an integer.",
+          "image": "HashingDataStructure-min-768x384.png"
+        }
+      ]
+    }
+  },
+  "7": {
+    "subTopic": {
+      "name": "Trees",
+      "paragraphs": [
+        {
+          "headline": "Binary Tree Data Structure\n",
+          "text": "A tree whose elements have at most 2 children is called a binary tree. Since each element in a binary tree can have only 2 children, we typically name them the left and right child.\n\nA Binary Tree node contains following parts.\nDataPointer to left childPointer to right child",
+          "image": null
+        },
+        {
+          "headline": "Trees",
+          "text": "public class Node {\n    public int value;\n    public Node left;\n    public Node right;\n\n    public Node(int value, Node left, Node right) {\n        this.value = value;\n        this.left = left;\n        this.right = right;\n    }\n\n    public Node(int value) {\n        this(value, null, null);\n    }\n}",
+          "image": "binary-tree-to-DLL.png"
+        },
+        {
+          "headline": "Trees",
+          "text": "public class Node {\n    public int value;\n    public Node left;\n    public Node right;\n\n    public Node(int value, Node left, Node right) {\n        this.value = value;\n        this.left = left;\n        this.right = right;\n    }\n\n    public Node(int value) {\n        this(value, null, null);\n    }\n}",
+          "image": null
+        }
+      ]
+    }
+  },
+  "8": {
+    "subTopic": {
+      "name": "Binary Search Tree",
+      "paragraphs": [
+        {
+          "headline": "Binary Search Tree",
+          "text": "Binary Search Tree is a node-based binary tree data structure which has the following properties:\nThe left subtree of a node contains only nodes with keys lesser than the node’s key.The right subtree of a node contains only nodes with keys greater than the node’s key.The left and right subtree each must also be a binary search tree.",
+          "image": null
+        },
+        {
+          "headline": "Binary Search Tree find",
+          "text": "public boolean find(Node root, int value) {\n    if (root == null) {\n        return false;\n    }\n    if (value < root.value) {\n        return find(root.left, value);\n    } else if (value > root.value) {\n        return find(root.right, value);\n    } else {\n        return true;\n    }\n}",
+          "image": "BSTSearch.png"
+        }
+      ]
+    }
+  },
+  "9": {
+    "subTopic": {
+      "name": "Inheritance\n",
+      "paragraphs": [
+        {
+          "headline": "Heap",
+          "text": "A Priority Queue is an ADT is a list where each element has a \"priority\" associated with it.",
+          "image": null
+        },
+        {
+          "headline": "Heap",
+          "text": "A Heap is a special Tree-based data structure in which the tree is a complete binary tree. Generally, Heaps can be of two types:\nMax-Heap: In a Max-Heap the key present at the root node must be greatest among the keys present at all of it’s children. The same property must be recursively true for all sub-trees in that Binary Tree.Min-Heap: In a Min-Heap the key present at the root node must be minimum among the keys present at all of it’s children. The same property must be recursively true for all sub-trees in that Binary Tree.",
+          "image": null
+        },
+        {
+          "headline": "Heap",
+          "text": "The maximally efficient way to implement this ADT is with a heap (O(log n) performance for both operations)\nHeap Property: Parents are always more important than their children\n\n\n\nTo add an element: insert and reorder the tree (O(log n))\nTo pull the highest priority element: pop the root out and reorder the tree (O(log n))",
+          "image": "MinHeapAndMaxHeap.png"
+        }
+      ]
+    }
+  },
+  "10": {
+    "subTopic": {
+      "name": "Sorting",
+      "paragraphs": [
+        {
+          "headline": "Sorting",
+          "text": "A common tool: swappingprivate static void swap(int[] array, int i, int j) {\n    int tmp = array[i];\n    array[i] = array[j];\n    array[j] = tmp;\n}",
+          "image": null
+        },
+        {
+          "headline": "Sorting: Selection Sort",
+          "text": "public static void selectionSort(int array[]) {\n    for (int i = 0; i < array.length; i++) {\n        int minIndex = i;\n        for (int j = i; j < array.length; j++) {\n            if (array[j] < array[minIndex]) {\n                minIndex = j;\n            }\n        }\n        swap(array, i, minIndex);\n    }\n}\nGeneral Information\nO(n^2) performanceO(1) space",
+          "image": null
+        },
+        {
+          "headline": "Sorting: Merge sort\n",
+          "text": "Here's where I'm going to stop implementing things and just explain them. Wikipedia is great.\nMerge sort is recursive.\nfunction mergeSort(A):\n    split A into A_beginning and A_end at the middle\n    mergeSort(A_beginning)\n    mergeSort(A_end)\n    return merge(A_beginning, A_end)\nGeneral Information\nO(n log n) performanceO(n) space",
+          "image": null
+        }
+      ]
+    }
+  },
+  "topic": "Data Structures"
+}

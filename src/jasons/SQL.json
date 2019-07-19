@@ -1,0 +1,158 @@
+{
+  "1": {
+    "subTopic": {
+      "name": "Hello, World!\n",
+      "paragraphs": [
+        {
+          "headline": "Note: ",
+          "text": "This tutorial uses the SQLite engine to operate on data. It is similar to other SQL engines such as MySQL and PostgreSQL.\nSQL is a very old declarative programming language which defines what data should be returned from a query, and how. Within each tutorial, we will start with an empty database, and construct the necessary tables and data for our exercise.\nFor the first tutorial, we will briefly discuss all the required instructions to start our first SQL query.",
+          "image": null
+        },
+        {
+          "headline": "Creating a table\n",
+          "text": "To create a table, we use the CREATE TABLE syntax. We'll get into the details in one of the next tutorials on how to use the CREATE TABLE statement.\nFor now, in our example, we will use a very basic CREATE TABLE statement that creates a table called helloworld with one column in the table called phrase. The phrase column holds data of type TEXT, which basically means you can store text in it, as opposed to numbers, boolean values, etc.\nHere is the statement:\nCREATE TABLE helloworld (phrase TEXT);\n.tables\nAfter we execute the statement, the table is created. We use the .tables sqlite statement to show the list of tables.\n",
+          "image": null
+        },
+        {
+          "headline": "Inserting data into a table\n",
+          "image": "SQL icon.png",
+          "text": "After we create a table, we can start inserting data into the table we've just created using the INSERT INTO statement. We'll get into the details of how to use the INSERT INTO statement in one of the next tutorials as well.\nData is inserted into tables on a row by row basis. We can insert a row using the INSERT INTO statement, and then update that row if we want using the UPDATE statement. But again, we'll get into updating rows in length later on.\nNow let's use the INSERT INTO statment, add two rows to the table, and then count how many row's we've added:\nCREATE TABLE helloworld (phrase TEXT);\nINSERT INTO helloworld VALUES (\"Hello, World!\");\nINSERT INTO helloworld VALUES (\"Goodbye, World!\");\nSELECT COUNT(*) FROM helloworld;"
+        },
+        {
+          "headline": "Selecting from a table\n",
+          "image": "SQL table.png",
+          "text": "Selecting data from one or more tables is done using the SELECT statement.\nSelecting data from a table is by far the most important skill to learn, because it is what enables us to create insights from data according to the question we want to answer. For example - \"how many students have an average higher than 80\" is something we can answer using a SELECT statement.\nHere is the basic syntax of a SELECT statement:\nSELECT * FROM helloworld WHERE phrase = \"Hello, World!\";\n\nThis statement will fetch all columns (hence the *) from the table helloworld, and filter the results only to the rows which the phrase column is equal to Hello, World!."
+        }
+      ]
+    }
+  },
+  "2": {
+    "subTopic": {
+      "name": "Selecting data\n",
+      "paragraphs": [
+        {
+          "headline": "Selecting data\n",
+          "text": "Selecting data is the foundation of SQL (a.k.a Structured Querying Language) and can be used for querying anywhere from tiny amounts to huge amounts of data.\nHere is the SELECT statement syntax:\nSELECT column1, column2, column3...\nFROM table1, table2, table3...\nWHERE condition1 AND condition2...\n\nThe first line right after the SELECT statement specifies the columns we'd like to select in the query. We can use the asterisk (*) if we want to select all fields of a table. You should avoid selecting all fields if the query returns a lot of data, because the more data you fetch, the more time the query will take in terms of time and network resources.\nAfter the FROM clause, you will need to specify the table (or tables) which you'd like to fetch the data. Fetching more than one table is another syntax of the term \"joining\" tables in SQL. We won't get into what \"joining\" tables is on this character yet, so for now we'll assume that you should only put one table in the SELECT query.\nThe last (and optional) part of the query is the WHERE clause which dictates under which conditions the row should be returned from the query. Or in other words, it enables you to filter the result based on specific parameters. The WHERE clause can be used for analyzing data by looking only at a specific subset of the data within the table, to gain insights.\nWHERE statements receive boolean statements which can use text comparison operators, numerical comparison operators, the IS NULL check, and more.",
+          "image": null
+        }
+      ]
+    }
+  },
+  "3": {
+    "subTopic": {
+      "name": "Inserting rows\n",
+      "paragraphs": [
+        {
+          "headline": "Inserting rows\n",
+          "text": "Once a table has been created, you can populate it with data using the INSERT command.\nHere is the syntax:\nINSERT INTO table_name (column1, column2)\nVALUES (value11, value12), (value21, value22), (value31, value32), ...\n\nThe first clause after the INSERT INTO statement specifies the columns which will be part of the insert statement. Each row to insert will specify the set of columns defined by the first clause, and in the same order. Any other column which was not specified in the first clause will receive the default value. If a NOT NULL column was defined in the table and the INSERT INTO statement missed the column, the INSERT command will fail to run.\nOn an INSERT, if the INTEGER PRIMARY KEY column is not explicitly given a value, then it will be filled automatically with an unused integer, usually the next number currently in use in the column. This is true regardless of whether or not the AUTOINCREMENTkeyword is used.\nIf the columns clause that specifies the list of columns is omitted, then the assumption is that all columns will be provided in the INSERT statement:\nINSERT INTO table_name VALUES (value1, value2, value3, value4...);\n\nIf one of the values is missing then the INSERT statement will simply fail, unless the query can figure out which fields can be set to their default value. In general, this method of inserting is never recommended because the database structure changes the meaning of the query, which can be very dangerous.\nNote that it is much much more efficient to insert values in bulk using one query, and not several new INSERT statments for each row because of the communication with the database. If you need to take performance into consideration, keep this in mind.\nHere are some examples of an INSERT query in action:\nCREATE TABLE customers (first_name NOT NULL, last_name NOT NULL, age);\nINSERT INTO customers (first_name, last_name, age) VALUES (\"John\", \"Doe\", 23);\nSELECT * FROM customers;\nNow let's see what happens if we omit the columns list:\nCREATE TABLE customers (first_name NOT NULL, last_name NOT NULL, age);\nINSERT INTO customers VALUES (\"John\", \"Doe\", 23);\nSELECT * FROM customers;\nLet's remove the age - this will cause the query to fail:\nCREATE TABLE customers (first_name NOT NULL, last_name NOT NULL, age);\nINSERT INTO customers VALUES (\"John\", \"Doe\");\nSELECT * FROM customers;\nLet's add more people:\nCREATE TABLE customers (first_name NOT NULL, last_name NOT NULL, age);\n\nINSERT INTO customers (first_name, last_name, age)\nVALUES (\"John\", \"Doe\", 23), (\"Eric\", \"Smith\", 26);\n\nSELECT * FROM customers;",
+          "image": null
+        },
+        {
+          "headline": "Replacing and ignoring\n",
+          "image": "Inserting SQL.jpg",
+          "text": "SQLite supports three additional types of syntax to insert data: INSERT OR REPLACE, REPLACE INTO and INSERT OR IGNORE.\nThe REPLACE statement means that if you are inserting an already existing row (meaning, a primary key which already exists in the table) then the INSERT statement will not fail and would actually delete the old row and insert the new one instead. REPLACE would fail if that row doesn't exist whereas INSERT OR REPLACE will always work and will either insert a new row or replace an existing one.\nINSERT OR IGNORE is similar to INSERT OR REPLACE but would actually completely ignore the INSERT command for the specific row that already exists in the database. This is useful when inserting a bulk of data which some of it (or its primary keys) may already exist."
+        }
+      ]
+    }
+  },
+  "4": {
+    "subTopic": {
+      "name": "Creating tables\n",
+      "paragraphs": [
+        {
+          "headline": "Creating tables\n",
+          "image": "Creating tables SQL.png",
+          "text": "Tables are the foundations of all databases. A table can contain rows of data - each with a predefined set of columns that is defined when creating the table.\nWhen creating a table, we need to specify the columns that the table will support, along with the type of data each column can hold.\nSQLite has several data types:\nINTEGER - a whole number.REAL - a floating point number.TEXT - readable text encoded with the encoding of the database (usually UTF-8).BLOB - A \"Binary Large Object\" which can contain a series of bytes. Good for storing images and such.\nOther databases such as MySQL and PostgreSQL have many more data types, but SQLite is a very simple database which is not focused on performance or scale, which is why it doesn't have many different data types.\nTo create a table, use the following syntax:\nCREATE TABLE database_name.table_name (\n    column1 <data type> PRIMARY KEY,\n    column2 <data type>,\n    column3 <data type>\n);\n\nA primary key of a table is a special type of unique index which defines the primary key of the table. There can only one row for each primary key, and it is very efficient to select on the primary because it is also an index. Unlike a unique index, a primary key cannot be NULL. Primary keys can also be used for things like foreign keys, constraints, sharing and more, and it is always important to define one, if possible.\nHere is an example:\nCREATE TABLE students (\n    id INTEGER PRIMARY KEY,\n    full_name TEXT,\n    age INTEGER\n)\n\nThe id of the student is the primary key, since we cannot have more than two people with the same ID number in our table. full_name needs to be a textual record whereas the age can be a whole number.\n"
+        }
+      ]
+    }
+  },
+  "5": {
+    "subTopic": {
+      "name": "Updating rows\n",
+      "paragraphs": [
+        {
+          "headline": "Updating rows\n",
+          "text": "Updating rows is done using the UPDATE statement. Updates are done using two parts: defining which rows should be updated, and the values of the columns to replace with.\nA lot of times an UPDATE statement will aim to replace one row, in which the query will use the primary key of the table to select the row to update.\nHere is the syntax of an UPDATE statement:\nUPDATE table_name\nSET column1 = value1, column2 = value2, ...\nWHERE key = value\n\nLet's look at an example of how an UPDATE statement works.\nCREATE TABLE customers (first_name NOT NULL, last_name NOT NULL, age);\n\nINSERT INTO customers (first_name, last_name, age)\nVALUES (\"John\", \"Doe\", 23), (\"Eric\", \"Smith\", 26);\n\nSELECT * FROM customers;\n\nUPDATE customers SET last_name = \"Heart\" WHERE first_name = \"John\";\n\nSELECT * FROM customers;\nExecute Code\n",
+          "image": null
+        }
+      ]
+    }
+  },
+  "6": {
+    "subTopic": {
+      "name": "Deleting rows\n",
+      "paragraphs": [
+        {
+          "headline": "Deleting rows\n",
+          "text": "eleting rows is very similar to updating rows, only that type of update done to the row is a delete.\nHere is the syntax:\nDELETE FROM table_name WHERE column1 = value1 AND column2 = value2 ...\n\nAll rows which meet the criteria of the DELETE query will be deleted.",
+          "image": null
+        }
+      ]
+    }
+  },
+  "7": {
+    "subTopic": {
+      "name": "Order by\n",
+      "paragraphs": [
+        {
+          "headline": "Order by\n\n",
+          "image": "Order by SQL.png",
+          "text": "Ordering the result of a query is mostly useful when we need to look at things from the most important row to the least important row. For example, to answer the question \"who are the people who received the highest grades\" can be answered by ordering the result and reading the result row by row.\nLet's take a list of grades and generate a list of alphabetically ordered names from A to Z:\nCREATE TABLE grades (name TEXT, subject TEXT, grade INTEGER);\n\nINSERT INTO grades (name, subject, grade) VALUES\n    (\"John\", \"CompSci\", 97), (\"Eric\", \"CompSci\", 88), (\"Carol\", \"Arts\", 99),\n    (\"John\", \"History\", 93), (\"Andrew\", \"History\", 82), (\"Eric\", \"History\", 87),  \n    (\"Steve\", \"Physics\", 91), (\"John\", \"Physics\", 84), (\"Barney\", \"Physics\", 97);\n\nSELECT DISTINCT name \nFROM grades\nORDER by name;\nNow, let's get a list of grades and order all grades from the highest to lowest. Notice that the ordering direction is now opposite which means the ordering is descending. A descending order by is noted using the DEST command.\nCREATE TABLE grades (name TEXT, subject TEXT, grade INTEGER);\n\nINSERT INTO grades (name, subject, grade) VALUES\n    (\"John\", \"CompSci\", 97), (\"Eric\", \"CompSci\", 88), (\"Carol\", \"Arts\", 99),\n    (\"John\", \"History\", 93), (\"Andrew\", \"History\", 82), (\"Eric\", \"History\", 87),  \n    (\"Steve\", \"Physics\", 91), (\"John\", \"Physics\", 84), (\"Barney\", \"Physics\", 97);\n\nSELECT name, subject, grade\nFROM grades\nORDER by grade DESC;"
+        }
+      ]
+    }
+  },
+  "8": {
+    "subTopic": {
+      "name": "Joining tables\n",
+      "paragraphs": [
+        {
+          "headline": "Joining tables\n",
+          "text": "The ability to join tables is one of the most important feature of a database. It allows the user to create a new set of data gathered from joining two tables side by side, \"stitching\" the columns of the first table with the columns of the second table.\nWe need to join tables when you want to query one table, and then add information to the result of a SELECT statement for each row from another table.\nJoining two tables effectively creates a \"cartesian multiplication\" result from a query with two tables, producing M * N rows in the resulting output (assuming the first table contains M rows and the second table contains N rows). However, when joining two tables a join condition is used which limits the amount of rows returned to a relationship condition between the two tables.\nLet's see an example. Let's say we have a database that contains customers and orders which the customers have made. The orders table refers to the ID of the customer from the customer table to track which order was made by each customer. We'd like to see all orders done by our customers, alongside the customer names.\nCREATE TABLE customers (\n    id INTEGER PRIMARY KEY,\n    first_name TEXT,\n    last_name TEXT\n);\n\nCREATE TABLE orders (\n    id INTEGER PRIMARY KEY,\n    customer_id INTEGER,\n    product_name TEXT\n);\n\nINSERT INTO customers (first_name, last_name) VALUES\n    (\"John\", \"Doe\");\n\nINSERT INTO orders (customer_id, product_name) VALUES\n    (last_insert_rowid(), \"Coke\"),\n    (last_insert_rowid(), \"Sprite\");\n\n.mode column\n.headers on\nSELECT product_name, first_name, last_name\nFROM orders\nJOIN customers ON orders.customer_id = customers.id;",
+          "image": null
+        },
+        {
+          "headline": "Group by\n",
+          "text": "The GROUP BY statement is the most crucial statement for analytics purposes, and provides us with the ability to aggregate a set of rows and summarize a result out of them. For example - using a customers and orders database, we can use a GROUP BYstatement to count how many orders each customer has.\nLet's take our customers database and count how many orders each customer has:\nCREATE TABLE customers (\n    id INTEGER PRIMARY KEY,\n    first_name TEXT,\n    last_name TEXT\n);\n\nCREATE TABLE orders (\n    id INTEGER PRIMARY KEY,\n    customer_id INTEGER,\n    product_name TEXT\n);\n\nINSERT INTO customers (first_name, last_name) VALUES\n    (\"John\", \"Doe\");\n\nINSERT INTO orders (customer_id, product_name) VALUES\n    (last_insert_rowid(), \"Coke\"),\n    (last_insert_rowid(), \"Sprite\");\n\nINSERT INTO customers (first_name, last_name) VALUES\n    (\"Eric\", \"Smith\");\n\nINSERT INTO orders (customer_id, product_name) VALUES\n    (last_insert_rowid(), \"Doritos\");\n\n.mode column\n.headers on\nSELECT first_name, last_name, COUNT(*) AS total_orders FROM customers\nJOIN orders ON orders.customer_id = customers.id\nGROUP BY orders.customer_id;\nExecute Code\n",
+          "image": null
+        }
+      ]
+    }
+  },
+  "9": {
+    "subTopic": {
+      "name": "Aggregate functions\n",
+      "paragraphs": [
+        {
+          "headline": "Aggregate functions\n",
+          "text": "SQL defines aggregate functions which can summarize a whole column using an aggregative operation. The two most basic aggregate functions are SUM and COUNT, which can sum the total value of a column or count the number of non-null entries that exist respectively. Another extremely useful function is the average function AVG which simply takes the SUM and divides it with the COUNT.\nHere's an example of the aggregate functions in action on a list of students and their grades:\nCREATE TABLE grades (name TEXT, grade INTEGER);\n\nINSERT INTO grades (name, grade) VALUES\n    (\"John\", 97), (\"Eric\", 88), (\"Jessica\", 98), (\"Mike\", 82), (\"Jeff\", NULL);\n\nSELECT \"total students\", COUNT(name) FROM grades;\nSELECT \"total grades\", COUNT(grade) FROM grades;\nSELECT \"sum of grades\", SUM(grade) FROM grades;\nSELECT \"grade average\", AVG(grade) FROM grades;\nSELECT \"lowest grade\", MIN(grade) FROM grades;\nSELECT \"highest grade\", MAX(grade) FROM grades;\nSELECT \"names\", GROUP_CONCAT(name) FROM grades;\n\nAggregating numbers can be done using mathematical functions such as SUM, COUNT, AVG, MIN, MAX, etc.\nAggregating strings is usually done using a function such as GROUP_CONCAT which simply concatenates the fields. It's not trivial to aggregate strings, and usually also not that useful for analytical purposes.",
+          "image": null
+        },
+        {
+          "headline": "Aggregate functions in Group By statements\n",
+          "text": "When grouping rows, aggregate functions must be used on all fields which are not part of the fields being grouped. This is because referring to a column in a group by result is ambiguous. A reference to a column in a group by statement must be done using an aggregate function.\nA logical example for this can be given using an example. Let's say we have the following database:\nCREATE TABLE grades (name TEXT, class INTEGER, grade INTEGER);\n\nINSERT INTO grades (name, class, grade) VALUES\n    (\"John\", 1, 97), (\"Eric\", 1, 88), (\"Jessica\", 1, 98), (\"Mike\", 1, 82), (\"Jeff\", 1, NULL),\n    (\"Ben\", 2, 93), (\"Andrew\", 2, 82), (\"Jason\", 2, 87), (\"Carol\", 2, 99), (\"Fred\", 2, 79);\n\nOnce we group the results by the class number, we create two types of fields in the grouped by result:\nGroup by fields: classAggregate fields: name, grade\nThe group by fields can simply be selected, whereas the aggregate fields (which are not part of the group by clause) must be summarized using an aggregate function.\nLet's calculate the grade average and list of names for each class using a GROUP BY statement:\nCREATE TABLE grades (name TEXT, class INTEGER, grade INTEGER);\n\nINSERT INTO grades (name, class, grade) VALUES\n    (\"John\", 1, 97), (\"Eric\", 1, 88), (\"Jessica\", 1, 98), (\"Mike\", 1, 82), (\"Jeff\", 1, NULL),\n    (\"Ben\", 2, 93), (\"Andrew\", 2, 82), (\"Jason\", 2, 87), (\"Carol\", 2, 99), (\"Fred\", 2, 79);\n\n.mode column\n.headers on\nSELECT class, GROUP_CONCAT(name), AVG(grade)\nFROM grades\nGROUP BY class;\nExecute Code\n",
+          "image": null
+        }
+      ]
+    }
+  },
+  "10": {
+    "subTopic": {
+      "name": "extra",
+      "paragraphs": [
+        {
+          "headline": "The HAVING statement\n",
+          "text": "he HAVING clause is an essential part of a group by query, which is almost identical to the WHERE clause, but works on aggregate fields after the aggregation phase, whereas the WHERE clause filters the data set before the aggregation process.\nTo give an example, a WHERE statement in a GROUP BY will only group the fields that match the criteria:\nCREATE TABLE grades (name TEXT, class INTEGER, grade INTEGER);\n\nINSERT INTO grades (name, class, grade) VALUES\n    (\"John\", 1, 97), (\"Eric\", 1, 88), (\"Jessica\", 1, 98), (\"Mike\", 1, 82), (\"Jeff\", 1, NULL),\n    (\"Ben\", 2, 93), (\"Andrew\", 2, 82), (\"Jason\", 2, 87), (\"Carol\", 2, 99), (\"Fred\", 2, 79);\n\nSELECT class, AVG(grade) \nFROM grades \nWHERE grade > 85 \nGROUP BY class;\nA HAVING statement will filter the resulting grouped data set using the result of the aggregation:\nCREATE TABLE grades (name TEXT, class INTEGER, grade INTEGER);\n\nINSERT INTO grades (name, class, grade) VALUES\n    (\"John\", 1, 97), (\"Eric\", 1, 88), (\"Jessica\", 1, 98), (\"Mike\", 1, 82), (\"Jeff\", 1, NULL),\n    (\"Ben\", 2, 93), (\"Andrew\", 2, 82), (\"Jason\", 2, 87), (\"Carol\", 2, 99), (\"Fred\", 2, 79);\n\nSELECT class, AVG(grade) \nFROM grades \nGROUP BY class\nHAVING AVG(grade) > 90;\nNotice that on this specific query, the WHERE-filtered query did not change the number of classes aggregated (since the filter kept at least one student from each class), but the HAVING-filtered query did remove one of the classes which did not pass the average score.\nYou can, of course, combine both WHERE and HAVING, to get the result you wish.",
+          "image": null
+        },
+        {
+          "headline": "Distinct queries\n",
+          "image": "exta SQL.png",
+          "text": "Distinct queries enable us count the number of unique values in a table or in a grouped set of rows.\nTo do this, we can use the DISTINCT directive. A DISTINCT query will return a de-duplicated set of entries, if all of the columns for two or more rows exactly match.\nAn example of where this can be useful is when we want to get the list of people\nLet's look at some examples:\nCREATE TABLE grades (name TEXT, subject TEXT, grade INTEGER);\n\nINSERT INTO grades (name, subject, grade) VALUES\n    (\"John\", \"CompSci\", 97), (\"Eric\", \"CompSci\", 88), (\"Carol\", \"Arts\", 99),\n    (\"John\", \"History\", 93), (\"Andrew\", \"History\", 82), (\"Eric\", \"History\", 87),  \n    (\"Steve\", \"Physics\", 91), (\"John\", \"Physics\", 84), (\"Barney\", \"Physics\", 97);\n\nSELECT \"all names\", COUNT(name) FROM grades;\nSELECT \"unique names\", COUNT(DISTINCT name) FROM grades;\nSELECT DISTINCT name FROM grades;\nA DISTINCT query is very similar to a GROUP BY clause with all of the columns selected inside the clause. This effectively causes all identical rows to be grouped together. The difference between a GROUP BY query and a DISTINCT query is that you cannot count the number of identical occurrences have been identified for each row with a DISTINCT query. However, it is more efficient than a GROUPBY query most of the times. "
+        }
+      ]
+    }
+  },
+  "topic": "SQL"
+}

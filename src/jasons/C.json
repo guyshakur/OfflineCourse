@@ -1,0 +1,193 @@
+{
+  "1": {
+    "subTopic": {
+      "name": "Statements",
+      "paragraphs": [
+        {
+          "headline": "Statements",
+          "text": "A computer program is a sequence of instructions that tell the computer what to do. A statement is a type of instruction that causes the program to perform some action.\nStatements are by far the most common type of instruction in a C program. This is because they are the smallest independent unit of computation in the C language. In that regard, they act much like sentences do in natural language. When we want to convey an idea to another person, we typically write or speak in sentences (not in random words or syllables). In C, when we want to have our program do something, we typically write statements.\nMost (but not all) statements in C end in a semicolon. If you see a line that ends in a semicolon, it’s probably a statement.\nIn a high-level language such as C, a single statement may compile into many machine language instructions.",
+          "image": null
+        },
+        {
+          "headline": "Functions and the main function\n",
+          "text": "In C, statements are typically grouped into units called functions. A function is a collection of statements that executes sequentially. As you learn to write your own programs, you’ll be able to create your own functions and mix and match statements in any way you please (we’ll show how in a future lesson).\nPrograms typically terminate (finish running) when the last statement inside function main is executed (though they may abort early in some circumstances).\nFunctions are typically written to do a specific job. For example, a function named “max” might contain statements that figures out which of two numbers is larger. A function named “calculateGrade” might calculate a student’s grade from a set of test scores. We will talk a lot more about functions soon, as they are the most commonly used organizing tool in a program.",
+          "image": null
+        },
+        {
+          "headline": "Our first program\n",
+          "image": "hello-world-c.png",
+          "text": "Every C program uses libraries, which give the ability to execute necessary functions. For example, the most basic function called printf, which prints to the screen, is defined in the stdio.h header file.\nTo add the ability to run the printf command to our program, we must add the following include directive to our first line of the code:\n#include <stdio.h>\n\nThe second part of the code is the actual code which we are going to write. The first code which will run will always reside in the main function.\nint main() {\n  ... our code goes here\n}\n\nThe int keyword indicates that the function main will return an integer - a simple number. The number which will be returned by the function indicates whether the program that we wrote worked correctly. If we want to say that our code was run successfully, we will return the number 0. A number greater than 0 will mean that the program that we wrote failed.\nFor this tutorial, we will return 0 to indicate that our program was successful:\nreturn 0;\n\nNotice that every line in C must end with a semicolon, so that the compiler knows that a new line has started.\nLast but not least, we will need to call the function printf to print our sentence."
+        }
+      ]
+    }
+  },
+  "2": {
+    "subTopic": {
+      "name": "Variables and Types\n",
+      "paragraphs": [
+        {
+          "headline": "Data types\n",
+          "text": "C has several types of variables, but there are a few basic types:\nIntegers - whole numbers which can be either positive or negative. Defined using char, int, short, long or long long.Unsigned integers - whole numbers which can only be positive. Defined using unsigned char, unsigned int, unsigned short, unsigned long or unsigned long long.Floating point numbers - real numbers (numbers with fractions). Defined using float and double.Structures - will be explained later, in the Structures section.\nThe different types of variables define their bounds. A char can range only from -128 to 127, whereas a long can range from -2,147,483,648 to 2,147,483,647 (long and other numeric data types may have another range on different computers, for example - from –9,223,372,036,854,775,808 to 9,223,372,036,854,775,807 on 64-bit computer).\nNote that C does not have a boolean type. Usually, it is defined using the following notation:\n#define BOOL char\n#define FALSE 0\n#define TRUE 1\n\nC uses arrays of characters to define strings, and will be explained in the Strings section.",
+          "image": null
+        },
+        {
+          "headline": "Defining variables",
+          "image": "variables-in-c-and-c-language-7-638.jpg",
+          "text": "or numbers, we will usually use the type int, which an integer in the size of a \"word\" the default number size of the machine which your program is compiled on. On most computers today, it is a 32-bit number, which means the number can range from -2,147,483,648 to 2,147,483,647.\nTo define the variables foo and bar, we need to use the following syntax:\nint foo;\nint bar = 1;\n\nThe variable foo can be used, but since we did not initialize it, we don't know what's in it. The variable bar contains the number 1.\nNow, we can do some math. Assuming a, b, c, d, and e are variables, we can simply use plus, minus and multiplication operators in the following notation, and assign a new value to a:\nint a = 0,b = 1,c = 2,d = 3, e = 4;\na = b - c + d * e;\nprintf(\"%d\", a); /* will print 1-2+3*4 = 11 */"
+        }
+      ]
+    }
+  },
+  "3": {
+    "subTopic": {
+      "name": "Arrays",
+      "paragraphs": [
+        {
+          "headline": "Arrays",
+          "text": "Arrays are special variables which can hold more than one value under the same variable name, organised with an index. Arrays are defined using a very straightforward syntax:\n/* defines an array of 10 integers */\nint numbers[10];\n\nAccessing a number from the array is done using the same syntax. Notice that arrays in C are zero-based, which means that if we defined an array of size 10, then the array cells 0 through 9 (inclusive) are defined. numbers[10] is not an actual value.\nint numbers[10];\n\n/* populate the array */\nnumbers[0] = 10;\nnumbers[1] = 20;\nnumbers[2] = 30;\nnumbers[3] = 40;\nnumbers[4] = 50;\nnumbers[5] = 60;\nnumbers[6] = 70;\n\n/* print the 7th number from the array, which has an index of 6 */\nprintf(\"The 7th number in the array is %d\", numbers[6]);\n\nArrays can only have one type of variable, because they are implemented as a sequence of values in the computer's memory. Because of that, accessing a specific array cell is very efficient.",
+          "image": null
+        }
+      ]
+    }
+  },
+  "4": {
+    "subTopic": {
+      "name": "Multidimensional Arrays",
+      "paragraphs": [
+        {
+          "headline": "Multidimensional Arrays",
+          "text": "he simplest form of multidimensional array is the two-dimensional array. A two-dimensional array is pretty much a list of one-dimensional arrays. To declare a two-dimensional integer array of size [ x ][ y ], you would write something like this −\ntype arrayName [x][y];\n\nWhere type can be any C data type (int, char, long, long long, double, etc.) and arrayName will be a valid C identifier, or variable. A two-dimensional array can be considered as a table which will have [ x ] number of rows and [ y ] number of columns. A two-dimensional array a, which contains three rows and four columns can be shown and thought about like this −",
+          "image": null
+        },
+        {
+          "headline": "Two-dimensional Arrays cont",
+          "text": "In this sense, every element in the array a is identified by an element name in the form a[i][j], where 'a' is the name of the array, and 'i' and 'j' are the indexes that uniquely identify, or show, each element in 'a'.\nAnd honestly, you really don't have to put in a [ x ] value really, because if you did something like this -\nchar vowels[][5] = {\n    {'A', 'E', 'I', 'O', 'U'},\n    {'a', 'e', 'i', 'o', 'u'}\n};\n\nthe compiler would already know that there are two \"dimensions\" you could say, but, you need need NEED a [ y ] value!! The compiler may be smart, but it will not know how many integers, characters, floats, whatever you're using you have in the dimensions. Keep that in mind.",
+          "image": null
+        },
+        {
+          "headline": "Accessing Two-Dimensional Array Elements\n",
+          "text": "n element in a two-dimensional array is accessed by using the subscripts, i.e., row index and column index of the array. For example −\nint val = a[2][3];\n\nThe above statement will take the 4th element from the 3rd row of the array.",
+          "image": null
+        },
+        {
+          "headline": "Initializing Two-Dimensional Arrays\n",
+          "image": "Multidimensional Arrays.png",
+          "text": "Multidimensional arrays may be used by specifying bracketed[] values for each row. Below is an array with 3 rows and each row has 4 columns. To make it easier, you can forget the 3 and keep it blank, it'll still work.\nint a[3][4] = {  \n   {0, 1, 2, 3} ,   /*  initializers for row indexed by 0 */\n   {4, 5, 6, 7} ,   /*  initializers for row indexed by 1 */\n   {8, 9, 10, 11}   /*  initializers for row indexed by 2 */\n};\n\nThe inside braces, which indicates the wanted row, are optional. The following initialization is the same to the previous example −\nint a[3][4] = {0,1,2,3,4,5,6,7,8,9,10,11};"
+        }
+      ]
+    }
+  },
+  "5": {
+    "subTopic": {
+      "name": "Conditions",
+      "paragraphs": [
+        {
+          "headline": "Decision Making\n",
+          "text": "n life, we all have to make decisions. In order to make a decision we weigh out our options and so do our programs.\nHere is the general form of the decision making structures found in C.\nint target = 10;\nif (target == 10) {\n    printf(\"Target is equal to 10\");\n}",
+          "image": null
+        },
+        {
+          "headline": "The if statement\n",
+          "image": "The if statement.jpg",
+          "text": "he if statement allows us to check if an expression is true or false, and execute different code according to the result.\nTo evaluate whether two variables are equal, the == operator is used, just like in the first example.\nInequality operators can also be used to evaluate expressions. For example:\nint foo = 1;\nint bar = 2;\n\nif (foo < bar) {\n    printf(\"foo is smaller than bar.\");\n}\n\nif (foo > bar) {\n    printf(\"foo is greater than bar.\");\n}\n\nWe can use the else keyword to exectue code when our expression evaluates to false.\nint foo = 1;\nint bar = 2;\n\nif (foo < bar) {\n    printf(\"foo is smaller than bar.\");\n} else {\n    printf(\"foo is greater than bar.\");\n}\n\nSometimes we will have more than two outcomes to choose from. In these cases, we can \"chain\" multiple if else statements together.\nint foo = 1;\nint bar = 2;\n\nif (foo < bar) {\n    printf(\"foo is smaller than bar.\");\n} else if (foo == bar) {\n    printf(\"foo is equal to bar.\");\n} else {\n    printf(\"foo is greater than bar.\");\n}\n\nYou can also nest if else statements if you like.\nint peanuts_eaten = 22;\nint peanuts_in_jar = 100;\nint max_peanut_limit = 50;\n\nif (peanuts_in_jar > 80) {\n    if (peanuts_eaten < max_peanut_limit) {\n        printf(\"Take as many peanuts as you want!\n\");\n    }\n} else {\n    if (peanuts_eaten > peanuts_in_jar) {\n        printf(\"You can't have anymore peanuts!\n\");\n    }\n    else {\n        printf(\"Alright, just one more peanut.\n\");\n    }\n}\n\nTwo or more expressions can be evaluated together using logical operators to check if two expressions evaluate to true together, or at least one of them. To check if two expressions both evaluate to true, use the AND operator &&. To check if at least one of the expressions evaluate to true, use the OR operator ||.\nint foo = 1;\nint bar = 2;\nint moo = 3;\n\nif (foo < bar && moo > bar) {\n    printf(\"foo is smaller than bar AND moo is larger than bar.\");\n}\n\nif (foo < bar || moo > bar) {\n    printf(\"foo is smaller than bar OR moo is larger than bar.\");\n}\n\nThe NOT operator ! can also be used likewise:\nint target = 9;\nif (target != 10) {\n    printf(\"Target is not equal to 10\");\n}"
+        }
+      ]
+    }
+  },
+  "6": {
+    "subTopic": {
+      "name": "Strings",
+      "paragraphs": [
+        {
+          "headline": "Defining strings\n",
+          "text": "Strings in C are actually arrays of characters. Although using pointers in C is an advanced subject, fully explained later on, we will use pointers to a character array to define simple strings, in the following manner:\nchar * name = \"John Smith\";\n\nThis method creates a string which we can only use for reading. If we wish to define a string which can be manipulated, we will need to define it as a local character array:\nchar name[] = \"John Smith\";\n\nThis notation is different because it allocates an array variable so we can manipulate it. The empty brackets notation [] tells the compiler to calculate the size of the array automatically. This is in fact the same as allocating it explicitly, adding one to the length of the string:\nchar name[] = \"John Smith\";\n/* is the same as */\nchar name[11] = \"John Smith\";\n\nThe reason that we need to add one, although the string John Smith is exactly 10 characters long, is for the string termination: a special character (equal to 0) which indicates the end of the string. The end of the string is marked because the program does not know the length of the string - only the compiler knows it according to the code.",
+          "image": null
+        },
+        {
+          "headline": "String formatting with printf\n",
+          "text": "We can use the printf command to format a string together with other strings, in the following manner:\nchar * name = \"John Smith\";\nint age = 27;\n\n/* prints out 'John Smith is 27 years old.' */\nprintf(\"%s is %d years old.\n\", name, age);\n\nNotice that when printing strings, we must add a newline (\n) character so that our next printf statement will print in a new line.",
+          "image": null
+        },
+        {
+          "headline": "String Length\n",
+          "text": "The function 'strlen' returns the length of the string which has to be passed as an argument:\nchar * name = \"Nikhil\";\nprintf(\"%d\n\",strlen(name));",
+          "image": null
+        },
+        {
+          "headline": "String comparison\n",
+          "text": "The function strncmp compares between two strings, returning the number 0 if they are equal, or a different number if they are different. The arguments are the two strings to be compared, and the maximum comparison length. There is also an unsafe version of this function called strcmp, but it is not recommended to use it. For example:\nchar * name = \"John\";\n\nif (strncmp(name, \"John\", 4) == 0) {\n    printf(\"Hello, John!\n\");\n} else {\n    printf(\"You are not John. Go away.\n\");\n}",
+          "image": null
+        },
+        {
+          "headline": "String Concatenation\n",
+          "image": "Strings.png",
+          "text": "The function 'strncat' appends first n characters of src string string to the destination string where n is min(n,length(src)); The arguments passed are destination string, source string, and n - maximum number of characters to be appended. For Example:\nchar dest[20]=\"Hello\";\nchar src[20]=\"World\";\nstrncat(dest,src,3);\nprintf(\"%s\n\",dest);\nstrncat(dest,src,20);\nprintf(\"%s\n\",dest);"
+        }
+      ]
+    }
+  },
+  "7": {
+    "subTopic": {
+      "name": "For loops\n",
+      "paragraphs": [
+        {
+          "headline": "For loops\n",
+          "text": "For loops in C are straightforward. They supply the ability to create a loop - a code block that runs multiple times. For loops require an iterator variable, usually notated as i.\nFor loops give the following functionality:\nInitialize the iterator variable using an initial valueCheck if the iterator has reached its final valueIncreases the iterator\nFor example, if we wish to iterate on a block for 10 times, we write:\nint i;\nfor (i = 0; i < 10; i++) {\n    printf(\"%d\n\", i);\n}\n\nThis block will print the numbers 0 through 9 (10 numbers in total).\nFor loops can iterate on array values. For example, if we would want to sum all the values of an array, we would use the iterator ias the array index:\nint array[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };\nint sum = 0;\nint i;\n\nfor (i = 0; i < 10; i++) {\n    sum += array[i];\n}\n\n/* sum now contains a[0] + a[1] + ... + a[9] */\nprintf(\"Sum of the array is %d\n\", sum);",
+          "image": null
+        }
+      ]
+    }
+  },
+  "8": {
+    "subTopic": {
+      "name": "While loops\n",
+      "paragraphs": [
+        {
+          "headline": "While loops\n",
+          "text": "While loops are similar to for loops, but have less functionality. A while loop continues executing the while block as long as the condition in the while remains true. For example, the following code will execute exactly ten times:\nint n = 0;\nwhile (n < 10) {\n    n++;\n}\n\nWhile loops can also execute infinitely if a condition is given which always evaluates as true (non-zero):\nwhile (1) {\n   /* do something */\n}",
+          "image": null
+        },
+        {
+          "headline": "Loop directives\n",
+          "text": "There are two important loop directives that are used in conjunction with all loop types in C - the break and continue directives.\nThe break directive halts a loop after ten loops, even though the while loop never finishes:\nint n = 0;\nwhile (1) {\n    n++;\n    if (n == 10) {\n        break;\n    }\n}\n\nIn the following code, the continue directive causes the printf command to be skipped, so that only even numbers are printed out:\nint n = 0;\nwhile (n < 10) {\n    n++;\n\n    /* check that n is odd */\n    if (n % 2 == 1) {\n        /* go back to the start of the while block */\n        continue;\n    }\n\n    /* we reach this code only if n is even */\n    printf(\"The number %d is even.\n\", n);\n}",
+          "image": null
+        }
+      ]
+    }
+  },
+  "9": {
+    "subTopic": {
+      "name": "Functions\n",
+      "paragraphs": [
+        {
+          "headline": "Functions\n",
+          "text": "C functions are simple, but because of how C works, the power of functions is a bit limited.\nFunctions receive either a fixed or variable amount of arguments.Functions can only return one value, or return no value.\nIn C, arguments are copied by value to functions, which means that we cannot change the arguments to affect their value outside of the function. To do that, we must use pointers, which are taught later on.\nFunctions are defined using the following syntax:\nint foo(int bar) {\n    /* do something */\n    return bar * 2;\n}\n\nint main() {\n    foo(1);\n}\n\nThe function foo we defined receives one argument, which is bar. The function receives an integer, multiplies it by two, and returns the result.\nTo execute the function foo with 1 as the argument bar, we use the following syntax:\nfoo(1);\n\nIn C, functions must be first defined before they are used in the code. They can be either declared first and then implemented later on using a header file or in the beginning of the C file, or they can be implemented in the order they are used (less preferable).\nThe correct way to use functions is as follows:\n/* function declaration */\nint foo(int bar);\n\nint main() {\n    /* calling foo from main */\n    printf(\"The value of foo is %d\", foo(1));\n}\n\nint foo(int bar) {\n    return bar + 1;\n}\n\nWe can also create functions that do not return a value by using the keyword void:\nvoid moo() {\n    /* do something and don't return a value */\n}\n\nint main() {\n    moo();\n}",
+          "image": null
+        }
+      ]
+    }
+  },
+  "10": {
+    "subTopic": {
+      "name": "Static\n",
+      "paragraphs": [
+        {
+          "headline": "What is a static variable?\n",
+          "text": "static is a keyword in the C programming language. It can be used with variables and functions.\n\nBy default, variables are local to the scope in which they are defined. Variables can be declared as static to increase their scope up to file containing them. As a result, these variables can be accessed anywhere inside a file.\nConsider the following scenario – we want to count the runners participating in a race:\n#include<stdio.h>\nint runner() {\n    int count = 0;\n    count++;\n    return count;\n}\n\nint main()\n{\n    printf(\"%d \", runner());\n    printf(\"%d \", runner());\n    return 0;\n}\n\nWe will see that count is not updated because it is removed from memory as soon as the function completes. If static is used, however:\n#include<stdio.h>\nint runner()\n{\n    static int count = 0;\n    count++;\n    return count;\n}\n\nint main()\n{\n    printf(\"%d \", runner());\n    printf(\"%d \", runner());\n    return 0;\n}",
+          "image": null
+        },
+        {
+          "headline": "What is a static function?\n",
+          "text": "By default, functions are global in C. If we declare a function with static, the scope of that function is reduced to the file containing it.\nThe syntax looks like this:\nstatic void fun(void) {\n   printf(\"I am a static function.\");\n}",
+          "image": null
+        },
+        {
+          "headline": "Static vs Global?\n",
+          "image": "Static.png",
+          "text": "While static variables have scope over the file containing them making them accessible only inside a given file, global variables can be accessed outside the file too."
+        }
+      ]
+    }
+  },
+  "topic": "C"
+}

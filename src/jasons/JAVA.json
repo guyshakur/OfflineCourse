@@ -1,0 +1,198 @@
+{
+  "1": {
+    "subTopic": {
+      "name": "Hello, World!\n",
+      "paragraphs": [
+        {
+          "headline": "Hello, World!\n",
+          "text": "Java is an object oriented language (OOP). Java objects are part of so-called \"Java classes\".\nLet's go over the Hello world program, which simply prints \"Hello, World!\" to the screen.\npublic class Main {\n    public static void main(String[] args) {\n        System.out.println(\"This will be printed\");\n    }\n}\n\nThe first line defines a class called Main.\npublic class Main {\n\nIn Java, every line of code that can actually run needs to be inside a class. This line declares a class named Main, which is public, that means that any other class can access it. This is not important for now, so don't worry. For now, we'll just write our code in a class called Main, and talk about objects later on.\nNotice that when we declare a public class, we must declare it inside a file with the same name (Main.java), otherwise we'll get an error when compiling.\nWhen running the examples on the site, we will not use the public keyword, since we write all our code in one file.\nThe next line is:\npublic static void main(String[] args) {\n\nThis is the entry point of our Java program. the main method has to have this exact signature in order to be able to run our program.\npublic again means that anyone can access it.static means that you can run this method without creating an instance of Main.void means that this method doesn't return any value.main is the name of the method.\nThe arguments we get inside the method are the arguments that we will get when running the program with parameters. It's an array of strings. We will use it in our next lesson, so don't worry if you don't understand it all now.\nSystem.out.println(\"This will be printed\");\nSystem is a pre-defined class that Java provides us and it holds some useful methods and variables.out is a static variable within System that represents the output of your program (stdout).println is a method of out that can be used to print a line.",
+          "image": null
+        },
+        {
+          "headline": "Our first program\n",
+          "image": "Hello, World java.png",
+          "text": "Every C program uses libraries, which give the ability to execute necessary functions. For example, the most basic function called printf, which prints to the screen, is defined in the stdio.h header file.\nTo add the ability to run the printf command to our program, we must add the following include directive to our first line of the code:\n#include <stdio.h>\n\nThe second part of the code is the actual code which we are going to write. The first code which will run will always reside in the main function.\nint main() {\n  ... our code goes here\n}\n\nThe int keyword indicates that the function main will return an integer - a simple number. The number which will be returned by the function indicates whether the program that we wrote worked correctly. If we want to say that our code was run successfully, we will return the number 0. A number greater than 0 will mean that the program that we wrote failed.\nFor this tutorial, we will return 0 to indicate that our program was successful:\nreturn 0;\n\nNotice that every line in C must end with a semicolon, so that the compiler knows that a new line has started.\nLast but not least, we will need to call the function printf to print our sentence."
+        }
+      ]
+    }
+  },
+  "2": {
+    "subTopic": {
+      "name": "Variables and Types\n",
+      "paragraphs": [
+        {
+          "headline": "Variables and Types\n",
+          "text": "lthough Java is object oriented, not all types are objects. It is built on top of basic variable types called primitives.\nHere is a list of all primitives in Java:\nbyte (number, 1 byte)short (number, 2 bytes)int (number, 4 bytes)long (number, 8 bytes)float (float number, 4 bytes)double (float number, 8 bytes)char (a character, 2 bytes)boolean (true or false, 1 byte)\nJava is a strong typed language, which means variables need to be defined before we use them.\n",
+          "image": null
+        },
+        {
+          "headline": "Numbers\n",
+          "text": "To declare and assign a number use the following syntax:\nint myNumber;\nmyNumber = 5;\n\nOr you can combine them:\nint myNumber = 5;\n\nTo define a double floating point number, use the following syntax:\ndouble d = 4.5;\nd = 3.0;\n\nIf you want to use float, you will have to cast:\nfloat f = (float) 4.5;\n\nOr, You can use this:\nfloat f = 4.5f; // (f is a shorter way of casting float)",
+          "image": null
+        },
+        {
+          "headline": "Characters and Strings\n",
+          "text": "in Java, a character is it's own type and it's not simply a number, so it's not common to put an ascii value in it, there is a special syntax for chars:\nchar c = 'g';\n\nString is not a primitive. It's a real type, but Java has special treatment for String.\nHere are some ways to use a string:\n// Create a string with a constructor\nString s1 = new String(\"Who let the dogs out?\");\n// Just using \"\" creates a string, so no need to write it the previous way.\nString s2 = \"Who who who who!\";\n// Java defined the operator + on strings to concatenate:\nString s3 = s1 + s2;\n\nThere is no operator overloading in Java! The operator + is only defined for strings, you will never see it with other objects, only primitives.\nYou can also concat string to primitives:\nint num = 5;\nString s = \"I have \" + num + \" cookies\"; //Be sure not to use \"\" with primitives.",
+          "image": null
+        },
+        {
+          "headline": "boolean",
+          "image": "Variables and Types java.png",
+          "text": "Every comparison operator in java will return the type boolean that not like other languages can only accept two special values: true or false.\nboolean b = false;\nb = true;\n\nboolean toBe = false;\nb = toBe || !toBe;\nif (b) {\n    System.out.println(toBe);\n}\n\nint children = 0;\nb = children; // Will not work\nif (children) { // Will not work\n    // Will not work\n}"
+        }
+      ]
+    }
+  },
+  "3": {
+    "subTopic": {
+      "name": "Conditionals\n",
+      "paragraphs": [
+        {
+          "headline": "Conditionals",
+          "text": "Java uses boolean variables to evaluate conditions. The boolean values true and false are returned when an expression is compared or evaluated. For example:\nint a = 4;\nboolean b = a == 4;\n\nif (b) {\n    System.out.println(\"It's true!\");\n}\n\nOf course we don't normally assign a conditional expression to a boolean. Normally, we just use the short version:\nint a = 4;\n\nif (a == 4) {\n    System.out.println(\"Ohhh! So a is 4!\");\n}",
+          "image": null
+        },
+        {
+          "headline": "Boolean operators\n",
+          "text": "There aren't that many operators to use in conditional statements and most of them are pretty straight forward:\nint a = 4;\nint b = 5;\nboolean result;\nresult = a < b; // true\nresult = a > b; // false\nresult = a <= 4; // a smaller or equal to 4 - true\nresult = b >= 6; // b bigger or equal to 6 - false\nresult = a == b; // a equal to b - false\nresult = a != b; // a is not equal to b - true\nresult = a > b || a < b; // Logical or - true\nresult = 3 < a && a < 6; // Logical and - true\nresult = !result; // Logical not - false",
+          "image": null
+        },
+        {
+          "headline": "if - else and between\n",
+          "text": "The if, else statement in Java is pretty simple.\nif (a == b) {\n    // a and b are equal, let's do something cool\n}\n\nAnd we can also add an else statement after an if, to do something if the condition is not true\nif (a == b) {\n    // We already know this part\n} else {\n    // a and b are not equal... :/\n}\n\nThe if - else statements doesn't have to be in several lines with {}, if can be used in one line, or without the {}, for a single line statment.\nif (a == b)\n    System.out.println(\"Another line Wow!\");\nelse\n    System.out.println(\"Double rainbow!\");\n\nAlthough this method might be useful for making your code shorter by using fewer lines, we strongly recommend for beginners not to use this short version of statements and to always use the full version with {}. This goes to every statement that can be shorted to a single line (for, while, etc).",
+          "image": null
+        },
+        {
+          "headline": "The ugly side of if\n",
+          "text": "There is a another way to write a one line if - else statement by using the operator ? :\nint a = 4;\nint result = a == 4 ? 1 : 8;\n\n// result will be 1\n// This is equivalent to\nint result;\n\nif (a == 4) {\n    result = 1;\n} else {\n    result = 8;\n}\n\nAgain, we strongly recommend for beginners not to use this version of if.",
+          "image": null
+        },
+        {
+          "headline": "== and equals\n",
+          "text": "The operator == works a bit different on objects than on primitives. When we are using objects and want to check if they are equal, the operator == will say if they are the same, if you want to check if they are logically equal, you should use the equalsmethod on the object. For example:\nString a = new String(\"Wow\");\nString b = new String(\"Wow\");\nString sameA = a;\n\nboolean r1 = a == b;      // This is false, since a and b are not the same object\nboolean r2 = a.equals(b); // This is true, since a and b are logically equals\nboolean r3 = a == sameA;  // This is true, since a and sameA are really the same object",
+          "image": "Conditionals java.jpg"
+        }
+      ]
+    }
+  },
+  "4": {
+    "subTopic": {
+      "name": "Arrays",
+      "paragraphs": [
+        {
+          "headline": "Arrays",
+          "text": "Arrays in Java are also objects. They need to be declared and then created. In order to declare a variable that will hold an array of integers, we use the following syntax:\nint[] arr;\n\nNotice there is no size, since we didn't create the array yet.\narr = new int[10];\n\nThis will create a new array with the size of 10. We can check the size by printing the array's length:\nSystem.out.println(arr.length);\n\nWe can access the array and set values:\narr[0] = 4;\narr[1] = arr[0] + 5;\n\nJava arrays are 0 based, which means the first element in an array is accessed at index 0 (e.g: arr[0], which accesses the first element). Also, as an example, an array of size 5 will only go up to index 4 due to it being 0 based.\nint[] arr = new int[5];\n//accesses and sets the first element\narr[0] = 4;\n\nWe can also create an array with values in the same line:\nint[] arr = {1, 2, 3, 4, 5};\n\nDon't try to print the array without a loop, it will print something nasty like [I@f7e6a96.",
+          "image": null
+        }
+      ]
+    }
+  },
+  "5": {
+    "subTopic": {
+      "name": "Loops",
+      "paragraphs": [
+        {
+          "headline": "For\n",
+          "text": "The for loop has three sections:\nfor (int i = 0; i < 3; i++) {}\n\nFirst section runs once when we enter the loop.\nSecond section is the gate keeper, if it returns true, we run the statements in the loop, if it returns false, we exit the loop. It runs right after the first section for the first time, then every time the loop is finished and the third section is run.\nThe third section is the final statement that will run every time the loop runs.\nSo in the case we have just seen, the loop will run 3 times. Here is the order of the commands:\nint i = 0;\ni < 3 // 0 < 3 = true\n      // Inside of loop\ni++ // i is now 1\ni < 3 // 1 < 3 = true\n      // Inside of loop\ni++ // i is now 2\ni < 3 // 2 < 3 = true\n      // Inside of loop\ni++ // i is now 3\ni < 3 // 3 < 3 = false\n      // Loop is done...\n\nWe can omit the first and third section of the loop (although it will be weird), and the loop will still work:\nfor (;i < 5;) {}\n\nFor cases where we want to use a loop that look like that, we use a while loop",
+          "image": null
+        },
+        {
+          "headline": "While\n",
+          "text": "The syntax is very similar to the previous for we looked at:\nwhile (condition) {}\n\nThe condition will run for the first time when entering and every time the loop is done. If it returns false, the loop will not run.\nIf we want the loop to always run at least one, we can use do-while\ndo {\n\n} while(condition);\n\nNotice the ; in the end of the do-while.",
+          "image": null
+        },
+        {
+          "headline": "break and continue",
+          "text": "\nThese two keywords help us control the loop from within it. break will cause the loop to stop and will go immediately to the next statement after the loop:\nint i;\nfor (i = 0; i < 5; i++) {\n    if (i >= 2) {\n        break;\n    }\n    System.out.println(\"Yuhu\");\n}\nSystem.out.println(i);\n// Output:\n// Yuhu\n// Yuhu\n// 2\n\ncontinue will stop the current iteration and will move to the next one. Notice that inside a for loop, it will still run the third section.\nint i;\nfor (i = 0; i < 5; i++) {\n    if (i >= 3) {\n        break;\n    }\n    System.out.println(\"Yuhu\");\n    if (i >= 1) {\n        continue;\n    }\n    System.out.println(\"Tata\");\n}\nSystem.out.println(i);\n// Output\n// Yuhu\n// Tata\n// Yuhu\n// Yuhu\n// 3",
+          "image": null
+        }
+      ]
+    }
+  },
+  "6": {
+    "subTopic": {
+      "name": "Functions\n",
+      "paragraphs": [
+        {
+          "headline": "Functions\n",
+          "text": "n Java, all function definitions must be inside classes. We also call functions methods. Let's look at an example method\npublic class Main {\n    public static void foo() {\n        // Do something here\n    }\n}\n\nfoo is a method we defined in class Main. Notice a few things about foo.\nstatic means this method belongs to the class Main and not to a specific instance of Main. Which means we can call the method from a different class like that Main.foo().void means this method doesn't return a value. Methods can return a single value in Java and it has to be defined in the method declaration. However, you can use return by itself to exit the method.This method doesn't get any arguments, but of course Java methods can get arguments as we'll see further on.",
+          "image": null
+        },
+        {
+          "headline": "Non static methods\n",
+          "text": "Non static methods in Java are used more than static methods. Those methods can only be run on objects and not on the whole class.\nNon static methods can access and alter the field of the object.\npublic class Student {\n    private String name;\n    public String getName() {\n        return name;\n    }\n    public void setName(String name) {\n        this.name = name;\n    }\n}\n\nCalling the methods will require an object of type Student.\nStudent s = new Student();\ns.setName(\"Danielle\");\nString name = s.getName();\n\nStudent.setName(\"Bob\"); // Will not work!\nStudent.getName(); // Will not work!\n\n",
+          "image": null
+        }
+      ]
+    }
+  },
+  "7": {
+    "subTopic": {
+      "name": "Objects",
+      "paragraphs": [
+        {
+          "headline": "Objects",
+          "text": "Everything in Java is within classes and objects. Java objects hold a state, state are variables which are saved together within an object, we call them fields or member variables.\nLet start with an example:\nclass Point {\n    int x;\n    int y;\n}\n\nThis class defined a point with x and y values.\nIn order to create an instance of this class, we need to use the keyword new.\nPoint p = new Point();\n\nIn this case, we used a default constructor (constructor that doesn't get arguments) to create a Point. All classes that don't explicitly define a constructor has a default constructor that does nothing.\nWe can define our own constructor:\nclass Point {\n    int x;\n    int y;\n\n    Point(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n}\n\nThis means we can not longer use the default constructor new Point(). We can now only use the defined constructor new Point(4,1).\nWe can define more than one constructor, so Point can be created in several ways. Let's define the default constructor again.\nclass Point {\n    int x;\n    int y;\n\n    Point() {\n        this(0, 0);\n    }\n\n    Point(int x, int y) {\n        this.x = x;\n        this.y = y;\n    }\n}\n\nNotice the usage of the this keyword here. We can use it within a constructor to call a different constructor (in order to avoid code duplication). It can only be the first line within the constructor.\nWe also used the this keyword as a reference of the current object we are running on.\nAfter we defined p we can access x and y.\np.x = 3;\np.y = 6;",
+          "image": null
+        },
+        {
+          "headline": "Methods\n",
+          "text": "We can now define methods on Point.\nclass Point {\n    ... // Our code previously\n    void printPoint() {\n        System.out.println(\"(\" + x + \",\" + y + \")\");\n    }\n\n    Point center(Point other) {\n        // Returns the center between this point the other point\n        // Notice we are using integer, we wan't get an accurate value\n        return new Point((x + other.x) / 2, (y + other.y) / 2);\n    }\n}",
+          "image": null
+        },
+        {
+          "headline": "Public and Private\n",
+          "text": "although we'll talk about modifiers later on, it's important to understand the different between private and public variables and methods.\nWhen using the keyword private before a variable or a method, it means only the class itself can access the variable or method, when we're using public it means everybody can access it. We usually see constructors defined as public, variables defined as private and methods are separated, some public and some private.",
+          "image": null
+        }
+      ]
+    }
+  },
+  "8": {
+    "subTopic": {
+      "name": "Compiling and Running with Arguments\n",
+      "paragraphs": [
+        {
+          "headline": "Compiling and Running with Arguments\n",
+          "text": "This section is used for you to use Java at home and understand the basics of how things are done.\nAfter creating a simple application that prints something to the screen, you need to compile your code and run it.\nIt shouldn't really matter if you use Linux, Mac or Windows. You need to have a console and you need to have the following commands available in order to compile and run Java.\njava (or java.exe)javac (or javac.exe)\nIn order for those to be available you must download and install JDK (Java Development Kit).\nIf we take the code from the previous lesson and put it in a file called MyFirstClass.java, in order to compile it we need to run:\njavac MyFirstClass.java\n\nThis will create a file called MyFirstClass.class that holds the compiled java code.\nTo run it, we need to run java with the name of the class as the argument (Not the file!)\nWrongjava MyFirstClass.class\nRight!java MyFirstClass",
+          "image": null
+        },
+        {
+          "headline": "Arguments",
+          "text": "The main methods get an array of strings as an argument, these are the command line arguments you may pass to your program.\nEvery array in java holds a variable called length that says how many elements are within that array.\nWe can go over the arguments with a simple for\npublic class Arguments {\n    public static void main(String[] args) {\n        for (int i = 0; i < args.length; i++) {\n            System.out.println(args[i]);\n        }\n    }\n}\n\nAnd to compile and run it with arguments:\njavac Arguments.java\njava Arguments arg0 arg1 arg2",
+          "image": "Compiling and Running with Arguments java.png"
+        }
+      ]
+    }
+  },
+  "9": {
+    "subTopic": {
+      "name": "Inheritance\n",
+      "paragraphs": [
+        {
+          "headline": "Inheritance\n",
+          "text": "in Java, the term inheritance refers to the adoption of all non-private properties and methods of one class (superclass) by another class (subclass). Inheritance is a way to make a copy of an existing class as the starting point for another. In addition to the term subclass, inherited classes are also called derived classes.\nAt this point, it may be helpful to distinguish inheritance from interfaces. Interfaces define only the structure of the class members while inherited classes include the actual code of the superclass. Additionally, inheritance (more accurately, the definition of a subclass) uses the extends keyword in the subclass declaration.\nFor clarity, if a subclass is created using a superclass and the subclass remains unaltered, the two classes will be identical. But most subclasses do not remain unaltered. Because a subclass is still a class, it can be altered to include new properties and methods. The finished subclass can even be used as a superclass to create additional subclasses. There is no effective limit to the number of inheritance levels.\nThe methods and properties of a subclass can be used just like those of it's superclass. They can also be overridden. Overriding is the process of replacing (or augmenting) the original code with new code to suit the current purpose. An overridden method's signature in the subclass remains the same as the superclass but the contents of the method will be changed to meet the goal of the method in it's new form. This may even mean executing the code inherited from the superclass before or after executing some new code within the same method. To execute the inherited code from within the subclass, prefix the method with super. It is also possible to write a subclass constructor that invokes the constructor of the superclass, either implicitly or by using the superkeyword (e.g., super.methodName()).\nWhy do this? Inheritance promotes code reuse and the concept of generic-to-specific implementation. Ideally, a superclass will be written at the most generic level. Subclasses can then be created from the superclass with a finer, more specific purpose.",
+          "image": null
+        },
+        {
+          "headline": "An example of inheritence\n",
+          "text": "Think of a door. It doesn't matter what kind. All doors open and close. However, some doors open differently than others (lifting up vs swinging out, swinging in vs sliding across). So, let's say Door is the superclass for a door and it has an open method. The method is simple. It's only instruction is push.\n\npublic class Door {\n    public void open ()\n    {\n        push();     // Since this is just a generic \"Door\" we will assume the simplest opening method.\n                    // The actual open method must be overridden by a subclass, as we see below.\n                    // Later, a way to force a subclass to override a method will be demonstrated -- \n                    // but for this simple example will do for now.\n    }\n}\nUsing this class on a bank vault door might prove unsuccessful. A better strategy would be to \"subclass\" Door using inheritance and then override the open method to input the combination and pull rather than push.\n\nclass BankVaultDoor extends Door {    // The \"extends\" keyword used to tell java that BankVaultDoor inherits the functionality of Door.\n\n    public void open () {\n        enterCombination();\n        pull;\n    }\n\n}\nThe advantage of using inheritance is writing code that applies to a number of classes that extend a more general class. In the below example we have a method that opens several types of doors.\n\npublic class Main {\n\n    public static void main(String[] args) {\n        Door d1 = new BankVaultDoor();\n        Door d2 = new HouseFrontDoor();\n        Door d3 = new CarDoor();\n    }\n\n    if (arg[0] == \"car\") {\n        d3.open();\n    } else if (arg[0] == \"bank\") {\n        d1.open();\n    } else {\n        d2.open();\n    }\n}\nNotice that the open() method doesn't know (or care) about the type of door. Any class that is subclassed from Door (using extends Door) will use the open() method to open it.",
+          "image": "Inheritance java.jpg"
+        }
+      ]
+    }
+  },
+  "10": {
+    "subTopic": {
+      "name": "Try and Catch\n",
+      "paragraphs": [
+        {
+          "headline": "Try and Catch\n",
+          "text": "Before going into try/catch statements, let's talk about Exceptions. Exceptions are thrown every time an error occurs. Some examples: ArrayIndexOutOfBounds is thrown if the index that does not exist in an array is accessed (e.g: Trying to access arr[5], but arr only goes up to arr[4]) ArithmeticError is thrown if an illegal arithmetic operation is done (e.g: 42/0, division by zero)\n\nThere are lots of exceptions that Java can throw (more than the above).\n\nBut, how can you handle exceptions, when you're unsure if an error will occur.\n\nThat's the purpose of try/catch! This is the syntax for try/catch:\n\n  try {\n    //Code here\n  } catch (ExceptionHere name) {\n        //Replace ExceptionHere with your exception and name with the name of your exception.\n        //Code if exception \"ExceptionHere\" is thrown.\n  }\nThe code after the try block will be attempted to be run. If the exception in the catch statement is thrown during the code in the try block is run, run the code in the catch block.\n\nYou can tell the user that there is a problem, or anything else.\n\nNOTE: You can also use Exception as the exception to catch if any exception is thrown.",
+          "image": null
+        }
+      ]
+    }
+  },
+  "topic": "Java"
+}
